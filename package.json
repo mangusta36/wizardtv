@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:pricing": "node scripts/verify-pricing.mjs",
+    "check:brand": "node scripts/brand-leak-audit.mjs",
+    "check:links": "node scripts/crawl-links.mjs"
   },
   "dependencies": {
     "next": "16.3.8",
@@ -18,9 +21,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ws": "^8.18.2",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ws": "^8.22.0"
   }
 }
