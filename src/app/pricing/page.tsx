@@ -4,6 +4,7 @@ import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { PricingSelector } from "@/components/PricingSelector";
 import { ButtonLink } from "@/components/ButtonLink";
+import { absoluteUrl } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     title: "Wizard TV IPTV Pricing and Subscription Plans",
     description:
       "Compare Wizard TV IPTV prices for 1 to 5 devices and choose 1 Month, 3 Months, 6 Months, or 12 Months.",
+    url: "/pricing",
   },
   twitter: {
     title: "Wizard TV IPTV Pricing and Subscription Plans",
@@ -74,8 +76,8 @@ export default function PricingPage() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Pricing", item: "/pricing" },
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Pricing", item: absoluteUrl("/pricing") },
           ],
         }}
       />

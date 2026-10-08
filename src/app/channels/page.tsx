@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     title: "Wizard TV IPTV Devices and Setup Guide",
     description:
       "Check common Wizard IPTV device paths, setup considerations, multi-device plans, Free Trial requests, and WhatsApp support.",
+    url: "/channels",
   },
   twitter: {
     title: "Wizard TV IPTV Devices and Setup Guide",
@@ -82,8 +84,8 @@ export default function ChannelsPage() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Devices", item: "/channels" },
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Devices", item: absoluteUrl("/channels") },
           ],
         }}
       />

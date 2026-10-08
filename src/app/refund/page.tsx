@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wizard TV Refund Policy",
     description: "Wizard TV refund policy placeholder pending final business review.",
+    url: "/refund",
   },
   twitter: {
     title: "Wizard TV Refund Policy",

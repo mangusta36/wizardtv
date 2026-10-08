@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "Wizard TV Blog",
     description:
       "Practical Wizard TV articles about IPTV plans, device setup, Free Trial requests, and customer support.",
+    url: "/blog",
   },
   twitter: {
     title: "Wizard TV Blog",

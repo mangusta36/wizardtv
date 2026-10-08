@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     title: "Wizard TV IPTV FAQ, Plans, Devices and Support",
     description:
       "Answers about Wizard TV IPTV pricing, devices, setup, Free Trial requests, support, and reseller inquiries.",
+    url: "/faq",
   },
   twitter: {
     title: "Wizard TV IPTV FAQ, Plans, Devices and Support",
@@ -233,8 +235,8 @@ export default function FaqPage() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "FAQ", item: "/faq" },
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "FAQ", item: absoluteUrl("/faq") },
           ],
         }}
       />

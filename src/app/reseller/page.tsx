@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
+import { absoluteUrl } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     title: "Wizard TV IPTV Reseller Information",
     description:
       "Review Wizard TV reseller inquiry details and contact Wizard TV through WhatsApp for current commercial information.",
+    url: "/reseller",
   },
   twitter: {
     title: "Wizard TV IPTV Reseller Information",
@@ -65,8 +67,8 @@ export default function ResellerPage() {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Reseller", item: "/reseller" },
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Reseller", item: absoluteUrl("/reseller") },
           ],
         }}
       />

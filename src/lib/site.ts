@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Wizard TV is a simple IPTV subscription service with clear pricing, multi-device options, free trial requests, and direct WhatsApp support.",
   whatsappNumber: "212753936672",
-  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://wizard-tv-domain-unset.invalid",
+  domain: "https://www.wizardtv.vip",
   nav: [
     { label: "Home", href: "/" },
     { label: "Pricing", href: "/pricing" },
@@ -16,8 +16,9 @@ export const siteConfig = {
 };
 
 export function siteUrl(path = "/") {
+  if (/^https?:\/\//i.test(path)) return path;
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  return siteConfig.domain ? `${siteConfig.domain}${cleanPath}` : cleanPath;
+  return `${siteConfig.domain}${cleanPath}`;
 }
 
 export function absoluteUrl(path = "/") {

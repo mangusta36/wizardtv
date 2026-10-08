@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: siteConfig.domain ? new URL(siteConfig.domain) : undefined,
+  metadataBase: new URL(siteConfig.domain),
   title: {
     default: "Wizard TV | IPTV Plans, Devices, Free Trial and Support",
     template: "%s | Wizard TV",
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wizard TV",
     description: siteConfig.description,
+    url: "/",
     siteName: "Wizard TV",
     images: [{ url: "/images/wizard-tv-living-room.jpg", width: 1200, height: 630 }],
     type: "website",
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Wizard TV",
+            "@id": absoluteUrl("/#organization"),
             url: absoluteUrl("/"),
             contactPoint: {
               "@type": "ContactPoint",

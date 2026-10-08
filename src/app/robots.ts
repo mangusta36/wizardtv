@@ -4,6 +4,6 @@ import { siteConfig } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: siteConfig.domain ? `${siteConfig.domain}/sitemap.xml` : undefined,
+    sitemap: `${siteConfig.domain}/sitemap.xml`,
   };
 }

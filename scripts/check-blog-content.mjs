@@ -5,7 +5,7 @@ import ts from "typescript";
 
 const sourcePath = path.join(process.cwd(), "src/data/blog.ts");
 let source = fs.readFileSync(sourcePath, "utf8");
-source = source.replace('import { absoluteUrl } from "@/lib/site";', 'const absoluteUrl = (path = "/") => `https://wizard-tv-domain-unset.invalid${path.startsWith("/") ? path : `/${path}`}`;');
+source = source.replace('import { absoluteUrl } from "@/lib/site";', 'const absoluteUrl = (path = "/") => `https://www.wizardtv.vip${path.startsWith("/") ? path : `/${path}`}`;');
 
 const compiled = ts.transpileModule(source, {
   compilerOptions: {

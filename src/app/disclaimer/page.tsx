@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wizard TV Disclaimer",
     description: "Wizard TV disclaimer for service information and device guidance.",
+    url: "/disclaimer",
   },
   twitter: {
     title: "Wizard TV Disclaimer",

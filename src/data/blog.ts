@@ -1375,7 +1375,7 @@ export function articleJsonLd(article: BlogArticle) {
     dateModified: article.updatedAt,
     image: absoluteUrl(article.heroImage),
     mainEntityOfPage: absoluteUrl(`/blog/${article.slug}`),
-    author: { "@type": "Organization", name: "Wizard TV" },
-    publisher: { "@type": "Organization", name: "Wizard TV" },
+    author: { "@type": "Organization", name: "Wizard TV", url: absoluteUrl("/") },
+    publisher: { "@type": "Organization", name: "Wizard TV", url: absoluteUrl("/") },
   };
 }

@@ -5,17 +5,19 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { PricingSelector } from "@/components/PricingSelector";
+import { absoluteUrl } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Wizard TV IPTV Plans, Device Setup and Free Trial",
   description:
     "Learn how Wizard TV IPTV works, compare Wizard IPTV plans for 1 to 5 devices, request a Free Trial, and contact support on WhatsApp.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: absoluteUrl("/") },
   openGraph: {
     title: "Wizard TV IPTV Plans, Devices and Free Trial",
     description:
       "Compare Wizard TV IPTV plans, review supported devices, request a Free Trial, and get direct WhatsApp support.",
+    url: absoluteUrl("/"),
   },
   twitter: {
     title: "Wizard TV IPTV Plans, Devices and Free Trial",
@@ -98,6 +100,7 @@ export default function Home() {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "Wizard TV",
+          url: absoluteUrl("/"),
           description: "Wizard TV IPTV pricing, devices, Free Trial requests, and support.",
         }}
       />
