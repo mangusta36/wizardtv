@@ -25,8 +25,18 @@ export type BlogArticle = {
   sources: { label: string; href: string }[];
 };
 
-const publishedAt = "2026-10-05";
-const updatedAt = "2026-10-06";
+const articleDates: Record<string, { publishedAt: string; updatedAt: string }> = {
+  "iptv-buffering-freezing-fixes-2026": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "wizard-tv-not-working-black-screen": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "xtream-codes-not-working-login-server-url": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "iptv-epg-not-working-guide-time": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "why-iptv-keeps-freezing-causes-fixes": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "wizard-tv-no-sound-audio-sync": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "mlb-playoffs-2026-schedule-wizard-tv": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "world-series-2026-schedule-wizard-tv": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "nba-2026-27-schedule-wizard-tv": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+  "uefa-champions-league-2026-27-fixtures-wizard-tv": { publishedAt: "2026-10-05", updatedAt: "2026-10-09" },
+};
 
 const image = {
   router: { src: "/images/blog/router-streaming-network.webp", alt: "Home router beside a TV streaming setup", width: 1200, height: 630 },
@@ -46,7 +56,7 @@ const source = {
   mlbPostseason: { label: "MLB postseason bracket and schedule", href: "https://www.mlb.com/postseason" },
   nbaSchedule: { label: "NBA 2026-27 regular-season schedule release", href: "https://www.nba.com/news/2026-27-nba-regular-season-schedule" },
   nbaKeyDates: { label: "NBA key dates for 2026-27", href: "https://www.nba.com/news/key-dates" },
-  uefaFixtures: { label: "UEFA Champions League 2026/27 league phase fixtures", href: "https://www.uefa.com/uefachampionsleague/news/02a8-2174c9e9019d-f909a77bd77a-1000--2026-27-champions-league-all-the-league-phase-fixtures-a/" },
+  uefaFixtures: { label: "UEFA Champions League 2026/27 league phase fixtures", href: "https://www.uefa.com/uefachampionsleague/news/02a8-2174c9e9019d-f909a77bd77a-1000--2026-27-uefa-champions-league-all-the-league-phase-fixtures/" },
   uefaByTeam: { label: "UEFA Champions League 2026/27 fixtures by team", href: "https://www.uefa.com/uefachampionsleague/news/02a8-2176fa83582b-d99f0b27f405-1000--champions-league-league-phase-fixtures-by-team/" },
 };
 
@@ -57,7 +67,9 @@ export function headingId(heading: string) {
 }
 
 function article(input: Omit<BlogArticle, "publishedAt" | "updatedAt">): BlogArticle {
-  return { ...input, publishedAt, updatedAt };
+  const dates = articleDates[input.slug];
+  if (!dates) throw new Error(`Missing publication dates for ${input.slug}`);
+  return { ...input, ...dates };
 }
 
 export const articles: BlogArticle[] = [
@@ -148,6 +160,7 @@ export const articles: BlogArticle[] = [
         body: [
           "You are finished troubleshooting when you can explain what changed. \"Ethernet fixed it\" points to wireless conditions. \"Another player fixed it\" points to app handling. \"Only one channel fails\" points away from the home network. \"Every device fails on every network\" points toward account or service-side review. That explanation matters more than the number of settings touched.",
           "If buffering returns, repeat the same order instead of starting from scratch. Immediate fixes work best when they create a pattern you can recognize later: time of day, room, device, player, channel, or network. The result is less frustration and fewer unnecessary changes.",
+          "If the same symptom keeps returning after the immediate checks, switch from fix mode to diagnosis. The [cause-first freezing guide](/blog/why-iptv-keeps-freezing-causes-fixes) explains how bandwidth, latency, packet loss, Wi-Fi interference, decoding, and service-side patterns produce different evidence. This page remains the ordered rescue checklist; that guide is for understanding why the problem comes back.",
         ],
       },
       {
@@ -822,7 +835,7 @@ export const articles: BlogArticle[] = [
     slug: "mlb-playoffs-2026-schedule-wizard-tv",
     title: "MLB Playoffs 2026: Schedule, Key Dates & How to Watch With Wizard TV",
     seoTitle: "MLB Playoffs 2026 Schedule and Postseason Guide",
-    excerpt: "A current MLB postseason guide for October 6, 2026, with completed Wild Card context, Division Series status, upcoming rounds, bracket progression, and schedule tracking.",
+    excerpt: "A current MLB postseason guide for October 9, 2026, with completed Wild Card context, Division Series status, upcoming rounds, bracket progression, and schedule tracking.",
     category: "Sports",
     primaryKeyword: "MLB Playoffs 2026 schedule",
     searchIntent: "Current postseason schedule and planning guide.",
@@ -831,22 +844,22 @@ export const articles: BlogArticle[] = [
     heroImage: image.baseball.src,
     heroAlt: image.baseball.alt,
     supportImages: [image.baseball, image.router],
-    metaDescription: "Check the MLB Playoffs 2026 schedule as of Oct. 6, with completed Wild Card results, Division Series context, upcoming rounds, and official sources.",
+    metaDescription: "Check the MLB Playoffs 2026 schedule as of Oct. 9, with completed Wild Card results, Division Series context, upcoming rounds, and official sources.",
     sections: [
       {
-        heading: "Status as of October 6, 2026",
+        heading: "Status as of October 9, 2026",
         image: image.baseball,
         table: {
           columns: ["Postseason stage", "Verified status", "Planning note"],
           rows: [
             ["Wild Card Series", "Completed Sept. 29-Oct. 1", "Winners advanced after best-of-three series"],
-            ["Division Series", "Current window in early October", "Check MLB for game times, results, and if-necessary games"],
-            ["League Championship Series", "Scheduled after Division Series", "Matchups depend on Division Series winners"],
+            ["Division Series", "Three series complete; one tied 2-2", "Cleveland hosts the White Sox in ALDS Game 5 on Oct. 10"],
+            ["League Championship Series", "NLCS starts Oct. 11; ALCS starts Oct. 12", "Dodgers visit Milwaukee; Tampa Bay awaits the remaining ALDS winner"],
             ["World Series", "Game 1 scheduled Friday, Oct. 23", "Later games can be unnecessary if the series ends early"],
           ],
         },
         body: [
-          "As of Tuesday, October 6, 2026, the 2026 MLB postseason is no longer a future event. MLB's official schedule lists Wild Card Series games from September 29 through October 1, with completed results already posted. That matters for readers because any guide that still says the Wild Card round is upcoming is outdated. The live planning focus has moved to the Division Series, the remaining path to the League Championship Series, and the World Series dates later in October.",
+          "As of Friday, October 9, 2026, MLB's official schedule shows the Dodgers, Brewers, and Rays through to the League Championship Series. Cleveland's October 8 win tied its Division Series with the White Sox at 2-2, leaving Game 5 in Cleveland on Saturday, October 10 as the final unresolved Division Series game. The live planning focus has moved from broad Division Series dates to that deciding game and the Championship Series that begin October 11 and 12.",
           "The postseason schedule is not a single fixed list of guaranteed games. Each round advances based on results, and several games exist only if necessary. A clean postseason guide should separate completed, current, upcoming, and TBD information. Completed Wild Card results explain how the bracket reached the current stage. Division Series games require current MLB schedule checks. League Championship matchups are not known until the Division Series ends. World Series teams are not known until the ALCS and NLCS are complete.",
           "Use MLB's own postseason pages for live status, game times, and changes. This article can help you understand the structure and what to track, but it should not be treated as a substitute for the official bracket on game day.",
         ],
@@ -863,7 +876,7 @@ export const articles: BlogArticle[] = [
         heading: "What is completed, current, upcoming, and TBD",
         body: [
           "Completed: the Wild Card Series. MLB's official schedule page shows posted results for September 29, September 30, and October 1. Because those games have already happened, they should be used as bracket context, not promoted as upcoming viewing dates. Completed information is useful because it explains who advanced and why a later matchup exists.",
-          "Current: Division Series play and immediate game results around October 6. This is the part of the schedule most likely to change from a reader's perspective, because today, tomorrow, and if-necessary games depend on live series state. Always check MLB before making plans for exact first pitch times.",
+          "Current: one deciding Division Series game remains. MLB lists White Sox at Guardians for Saturday, October 10 at 8 p.m. Eastern after Cleveland tied the series on October 8. The Dodgers and Brewers are set for the NLCS beginning October 11, while Tampa Bay awaits the White Sox-Guardians winner for the ALCS beginning October 12. Recheck MLB before first pitch because the official schedule remains the live source.",
           "Upcoming: Championship Series and World Series date windows. MLB lists the World Series opening on Friday, October 23, 2026, at the home of the league champion with the better 2026 regular-season record. TBD: final World Series teams, exact later-round matchups before qualification, and any if-necessary games that depend on series length.",
         ],
       },
@@ -888,14 +901,14 @@ export const articles: BlogArticle[] = [
         heading: "Why the World Series gets a separate guide",
         body: [
           "The World Series deserves separate treatment because its planning questions differ from the whole postseason. A postseason guide explains bracket flow, current rounds, and how teams advance. A World Series guide focuses on the best-of-seven format, home-field structure, official Game 1-7 dates, and when teams become known. Mixing those together can create an article that answers neither intent well.",
-          "If your main question is the final series schedule, use the [World Series 2026 guide](/blog/world-series-2026-schedule-wizard-tv). If your main question is where the October 6 bracket stands and how the playoffs progress from here, stay on this page and keep MLB's official postseason schedule open.",
+          "If your main question is the final series schedule, use the [World Series 2026 guide](/blog/world-series-2026-schedule-wizard-tv). If your main question is where the October 9 bracket stands and how the playoffs progress from here, stay on this page and keep MLB's official postseason schedule open.",
         ],
       },
       {
         heading: "Reading MLB schedule labels",
         body: [
           "MLB schedule pages often combine results, upcoming games, broadcast notes, and if-necessary labels on the same page. Read each line carefully. A completed line usually includes a score or series note. An upcoming line includes a date, matchup, time, and network. A conditional line includes an asterisk or if-necessary note. Those labels are not decoration; they determine whether the game is already history, actively planned, or only reserved.",
-          "The Wild Card section is now historical context for 2026. It tells you who advanced and how quickly a series ended. The Division Series section is where current October 6 attention belongs. The Championship Series section is a near-future planning area. The World Series section is a fixed date framework with unknown teams. Treating all four sections the same creates outdated or misleading copy.",
+          "The Wild Card section is now historical context for 2026. It tells you who advanced and how quickly a series ended. On October 9, the Division Series section has one deciding game left, while the Championship Series section contains one confirmed NL matchup and one AL opponent still pending. The World Series section remains a fixed date framework with unknown teams. Treating all four sections the same creates outdated or misleading copy.",
           "When a best-of series ends early, future placeholders disappear from practical planning. A calendar can still show the original reserved slot, but fans no longer need it for that series. This is why MLB's official page should be checked after every result. The bracket can change from likely to impossible in one night.",
           "Broadcast information also belongs to official sources. MLB's page can list networks for postseason games, but a brand site should not convert that into a claim that a separate service carries the game. Keep schedule verification and subscription availability separate.",
         ],
@@ -930,20 +943,20 @@ export const articles: BlogArticle[] = [
       {
         heading: "Final MLB Playoffs checklist",
         body: [
-          "On October 6, start by checking the current Division Series state on MLB.com. Then confirm which Wild Card outcomes are already completed, which Division Series games are next, which Championship Series slots remain pending, and which World Series dates are only future placeholders. That order matches the actual postseason timeline.",
+          "On October 9, start by checking the deciding White Sox-Guardians game on MLB.com, then confirm the posted NLCS and ALCS schedules and which World Series dates remain future placeholders. That order matches the actual postseason timeline.",
           "Use four labels in your own notes: completed, current, upcoming, and TBD. Completed results explain the bracket. Current games require daily attention. Upcoming rounds give you planning windows. TBD protects you from naming teams or games before results make them real.",
           "If you are using this guide for viewing preparation, keep availability separate. Official MLB and broadcaster sources answer where games are carried. Technical articles answer what to do if a legitimate stream buffers or audio fails.",
-          "If you save the bracket, refresh it daily. A screenshot from October 5 can be wrong on October 6. If you follow both leagues, label AL and NL paths separately so the Championship Series and World Series progression stay clear.",
+          "If you save the bracket, refresh it daily. A screenshot from October 8 can be wrong on October 9. If you follow both leagues, label AL and NL paths separately so the Championship Series and World Series progression stay clear.",
           "If a series is tied, pay closer attention to if-necessary labels. Competitive series make reserved dates more likely to matter; lopsided series can remove those dates quickly.",
           "If your team advanced from the Wild Card round, use completed scores as context, not as the viewing plan. If your team is waiting in a later round, follow the opponent path and avoid assuming a matchup before the bracket confirms it.",
           "If MLB updates a game time, update your calendar immediately. Postseason days can include several games, and one changed time can affect a full evening plan.",
-          "If you are writing notes for a reader, avoid words like tomorrow or tonight unless the article will be updated daily. Use absolute dates for postseason guidance because the schedule changes quickly and old relative wording becomes wrong. October 6, 2026 is the audit context; September Wild Card games are past events.",
+          "If you are writing notes for a reader, avoid words like tomorrow or tonight unless the article will be updated daily. Use absolute dates for postseason guidance because the schedule changes quickly and old relative wording becomes wrong. October 9, 2026 is this article's verification context; September Wild Card games are past events.",
           "If you care about World Series planning, follow the postseason bracket but switch to the dedicated World Series guide when the question becomes Game 1 through Game 7. The playoff path and the final series schedule overlap, but they answer different search intents.",
         ],
       },
     ],
     faqs: [
-      { question: "Have the 2026 MLB Playoffs started?", answer: "Yes. As of October 6, 2026, the Wild Card Series has already been completed, and the postseason has moved into later-round planning. Treat September dates as results, not previews." },
+      { question: "Have the 2026 MLB Playoffs started?", answer: "Yes. As of October 9, 2026, the Wild Card Series is complete, three Division Series have been decided, and the White Sox-Guardians series is tied 2-2 before its October 10 deciding game. Treat September dates as results, not previews, and use MLB for the live bracket." },
       { question: "Are all remaining MLB playoff games guaranteed?", answer: "No. Later games in a series may be marked if necessary. They are played only if the series has not already been decided. Check the series score before planning around a reserved game slot." },
       { question: "When is World Series Game 1 scheduled?", answer: "MLB's schedule lists World Series Game 1 for Friday, October 23, 2026, with the host tied to the league champion with the better 2026 regular-season record. Treat this as a date-planning fact, not a confirmed team or venue claim." },
       { question: "Does this page confirm Wizard TV carries MLB games?", answer: "No. This page does not verify Wizard TV sports rights. Use official MLB and broadcaster sources for legal viewing availability. This guide is for schedule context and technical preparation, not a rights or channel-availability promise. If a game matters to your plans, confirm the official viewing source before relying on any device setup." },
@@ -967,10 +980,10 @@ export const articles: BlogArticle[] = [
     metaDescription: "Check the World Series 2026 schedule, official game dates, team status, best-of-seven format, and what remains TBD.",
     sections: [
       {
-        heading: "World Series status on October 6, 2026",
+        heading: "World Series status on October 9, 2026",
         image: image.baseball,
         table: {
-          columns: ["Game", "Official date", "Status on Oct. 6"],
+          columns: ["Game", "Official date", "Status on Oct. 9"],
           rows: [
             ["Game 1", "Friday, Oct. 23", "Scheduled; teams TBD"],
             ["Game 2", "Saturday, Oct. 24", "Scheduled; teams TBD"],
@@ -982,7 +995,7 @@ export const articles: BlogArticle[] = [
           ],
         },
         body: [
-          "The 2026 World Series has official dates, but as of October 6, 2026, it does not have confirmed teams. MLB's schedule lists Game 1 for Friday, October 23, followed by Game 2 on October 24, Game 3 on October 26, Game 4 on October 27, and if-necessary Games 5-7 on October 28, October 30, and October 31. The matchup depends on the American League and National League champions, which are determined after the Championship Series.",
+          "The 2026 World Series has official dates, but as of October 9, 2026, it does not have confirmed teams. MLB's schedule lists Game 1 for Friday, October 23, followed by Game 2 on October 24, Game 3 on October 26, Game 4 on October 27, and if-necessary Games 5-7 on October 28, October 30, and October 31. The matchup depends on the American League and National League champions, which are determined after the Championship Series.",
           "That distinction is the heart of this guide. World Series dates can be known before World Series teams are known. Do not treat predicted matchups as confirmed. Do not build a viewing plan around a favorite team until that team has actually won its league pennant. The safest planning language is: dates scheduled, participants TBD, later games conditional.",
           "This article is narrower than the full [MLB Playoffs guide](/blog/mlb-playoffs-2026-schedule-wizard-tv). It does not re-explain every postseason round. It focuses on the final series: format, date logic, home field, conditional games, and how to verify the final matchup.",
         ],
@@ -991,7 +1004,7 @@ export const articles: BlogArticle[] = [
         heading: "How teams qualify for the World Series",
         body: [
           "The World Series is played between the American League champion and the National League champion. Those champions are not selected by regular-season record alone. They emerge from the postseason bracket after the Wild Card, Division Series, and Championship Series rounds. A team can have a strong regular season and still fail to reach the final series.",
-          "As of October 6, the postseason is still progressing toward those league champions. That means any page listing specific 2026 World Series teams before the Championship Series is complete should be treated skeptically unless it is clearly hypothetical. Official MLB pages are the right place to confirm when the matchup becomes real.",
+          "As of October 9, the postseason is still progressing toward those league champions. The Dodgers, Brewers, and Rays have reached their League Championship Series, while the remaining American League place depends on the White Sox-Guardians deciding game. Any page listing specific World Series teams before both Championship Series are complete should be treated skeptically unless it is clearly hypothetical.",
           "Once both league champions are set, update your calendar with team names, venues, and start times. Until then, use neutral placeholders: AL champion and NL champion. This keeps the schedule accurate without inventing a matchup.",
         ],
       },
@@ -1016,6 +1029,7 @@ export const articles: BlogArticle[] = [
         image: image.router,
         body: [
           "Use MLB's official schedule for final teams, venues, times, and if-necessary status. Broadcast and streaming availability should be verified through MLB and official broadcaster information. This site does not verify that Wizard TV carries the World Series, and it should not be used as proof of sports rights.",
+          "On October 9, the practical verification sequence is straightforward: follow the remaining Division Series result, then the ALCS and NLCS, and only then attach team names to the World Series dates. MLB's live bracket connects those stages. The fixed October 23 opening date does not make a predicted participant, venue, or first-pitch time official before that chain is complete.",
           "If you are preparing a streaming device for a game, test the setup before first pitch. Confirm internet connection, audio output, and app stability. If you have had buffering before, a wired connection is worth testing. If audio is delayed through Bluetooth or a soundbar, fix that before the game starts.",
           "Keep the technical preparation separate from availability claims. A device can be ready while a game still requires verification through official viewing sources. That distinction protects readers from misleading promises.",
         ],
@@ -1079,7 +1093,7 @@ export const articles: BlogArticle[] = [
       },
     ],
     faqs: [
-      { question: "Are the 2026 World Series teams known on October 6?", answer: "No. The teams are still TBD until the American League and National League champions are determined. Use AL champion and NL champion placeholders until MLB confirms the matchup. Predictions should be labeled clearly, not presented as schedule facts, even when one outcome looks likely during October baseball coverage or commentary online that day publicly anywhere." },
+      { question: "Are the 2026 World Series teams known on October 9?", answer: "No. The teams remain TBD until the American League and National League champions are determined. Use AL champion and NL champion placeholders until MLB confirms the matchup, and label predictions rather than presenting them as schedule facts." },
       { question: "What is the scheduled date for World Series Game 1?", answer: "MLB lists Game 1 for Friday, October 23, 2026. The host is tied to the league champion with the better 2026 regular-season record, so the ballpark cannot be named before the participants are known. Once the AL and NL champions are confirmed, update the matchup, venue, local time, and any official broadcast details from MLB. Until then, the honest answer is scheduled date known, teams TBD. Recheck MLB after each Championship Series result." },
       { question: "Are Games 5, 6, and 7 guaranteed?", answer: "No. Those games are played only if necessary in the best-of-seven series. Add them to a calendar only with an if-necessary note, and remove them if the series ends early. Game 5 requires the series to continue past four games, Game 6 requires it to continue past five, and Game 7 requires a 3-3 split after six games. Check MLB after each result." },
       { question: "Does Wizard TV officially carry the World Series?", answer: "This site does not verify World Series broadcast rights for Wizard TV. Check MLB and official broadcaster sources for availability. A schedule guide can prepare dates, but availability must come from official rights sources. If availability matters for a watch party, verify it before the game day rather than during pregame. Keep technical setup questions separate from legal availability: a device can be ready even when the viewer still needs to confirm the official broadcast path. Do not treat schedule publication as a channel guarantee or subscription promise." },
@@ -1240,21 +1254,22 @@ export const articles: BlogArticle[] = [
     metaDescription: "Check UEFA Champions League 2026-27 fixtures, league phase dates, matchdays, knockout logic, official UEFA updates, and TBD ties.",
     sections: [
       {
-        heading: "Current competition stage on October 6, 2026",
+        heading: "Current competition stage on October 9, 2026",
         image: image.football,
         table: {
           columns: ["Stage or matchday", "Verified date/status", "What is known"],
           rows: [
             ["League phase begins", "Tuesday, Sept. 8, 2026", "Already underway"],
-            ["Matchday 2", "Tuesday/Wednesday, Oct. 13-14, 2026", "Upcoming from Oct. 6 perspective"],
+            ["Matchday 2", "Tuesday/Wednesday, Oct. 13-14, 2026", "Upcoming from Oct. 9 perspective"],
             ["League phase concludes", "Wednesday, Jan. 27, 2027", "UEFA lists simultaneous final fixtures"],
             ["Knockout phase", "After league phase and draws", "Ties depend on table position and draw process"],
           ],
         },
         body: [
-          "As of Tuesday, October 6, 2026, the UEFA Champions League 2026-27 league phase is already underway. UEFA's fixture coverage states that the league phase kicked off on Tuesday, September 8, 2026, and runs until Wednesday, January 27, 2027. Matchday 2 is listed for October 13-14, so from the October 6 perspective the next league-phase fixture window is upcoming, while Matchday 1 is already in the past.",
+          "As of Friday, October 9, 2026, the UEFA Champions League 2026-27 league phase is already underway. UEFA's fixture coverage states that the league phase kicked off on Tuesday, September 8, 2026, and runs until Wednesday, January 27, 2027. Matchday 2 is listed for October 13-14, so the next league-phase fixture window is upcoming, while Matchday 1 is already in the past.",
           "A Champions League fixtures guide should not read like an MLB or NBA calendar. The competition has its own structure: league phase fixtures, a table, qualification paths, knockout draws, two-leg ties in several rounds, and a final. Scheduled league-phase fixtures can be known by team and date, while later knockout matchups remain TBD until the table and draw process determine them.",
           "Use UEFA's fixture pages as the primary source for current matches, kick-off times, venues, and results. Fixture lists can change, and local kickoff times require attention if you are outside the displayed time zone.",
+          "UEFA's October 9 listing gives concrete Matchday 2 examples rather than a generic date window: Lens-Sporting CP and Sabah-Slavia Praha are listed in the earlier Tuesday slot, followed by the main evening slate, with the remaining fixtures on Wednesday. Readers should open the official list for the full set and current local-time display instead of copying a partial selection from this overview.",
         ],
       },
       {
@@ -1268,7 +1283,7 @@ export const articles: BlogArticle[] = [
       {
         heading: "October and January checkpoints",
         body: [
-          "October 6 sits between the opening matchday and Matchday 2. That means readers should not be told the league phase is about to begin; it already began in September. The practical question is which Matchday 2 fixtures are next and how to follow the table afterward. UEFA's fixture-by-team page is the best place to confirm exact pairings and kickoff times.",
+          "October 9 sits between the opening matchday and Matchday 2. That means readers should not be told the league phase is about to begin; it already began in September. The practical question is which Matchday 2 fixtures are next and how to follow the table afterward. UEFA's fixture-by-team page is the best place to confirm exact pairings and kickoff times.",
           "January 27, 2027 is the scheduled conclusion of the league phase, with UEFA describing simultaneous final fixtures. That date is important because it sets up the next phase of the competition. After the table is settled, attention moves from league fixtures to knockout qualification, draw information, and two-leg tie dates.",
           "Between October and January, treat fixture status as live information. Results, postponements, and table movement can change what a match means. A static article can explain the framework, but the official fixture page should be checked for current details.",
         ],
@@ -1276,7 +1291,7 @@ export const articles: BlogArticle[] = [
       {
         heading: "Knockout ties, draws, and TBD matchups",
         body: [
-          "Knockout fixtures are not all knowable on October 6. The league table and draw process determine who plays whom. A responsible guide can explain that logic without naming teams that have not qualified for a specific tie. Use terms like knockout play-offs, round of 16, quarter-finals, semi-finals, and final, but do not attach clubs before UEFA confirms the draw.",
+          "Knockout fixtures are not all knowable on October 9. The league table and draw process determine who plays whom. A responsible guide can explain that logic without naming teams that have not qualified for a specific tie. Use terms like knockout play-offs, round of 16, quarter-finals, semi-finals, and final, but do not attach clubs before UEFA confirms the draw.",
           "Two-leg ties require different planning from league-phase fixtures. Supporters need to know home leg, away leg, aggregate score, and whether extra time or penalties may be possible under competition rules. Those details become relevant once a tie exists. Before that point, they are structural context, not a fixture announcement.",
           "The final is different again: it is a single match at a set stage of the competition, but the participants are not known until the semi-finals finish. Keep final planning separate from final participants. Dates and venue information should come from UEFA, while team names remain TBD until qualification is complete.",
         ],
@@ -1328,7 +1343,7 @@ export const articles: BlogArticle[] = [
       {
         heading: "Examples of fixture-reading mistakes",
         body: [
-          "Mistake one is calling September fixtures upcoming after they have already been played. On October 6, the league phase has started, so September 8 belongs in the completed context. The next useful window is Matchday 2 on October 13-14. Correct tense is not cosmetic; it tells readers whether the article is current.",
+          "Mistake one is calling September fixtures upcoming after they have already been played. On October 9, the league phase has started, so September 8 belongs in the completed context. The next useful window is Matchday 2 on October 13-14. Correct tense is not cosmetic; it tells readers whether the article is current.",
           "Mistake two is naming knockout opponents before UEFA confirms them. A club may look likely to qualify, but likely is not scheduled. Until the table and draw produce a tie, write TBD. This protects the article from publishing imaginary fixtures and confusing supporters who came for confirmed dates.",
           "Mistake three is ignoring the league table. Fixture dates tell you when matches happen, but the table tells you what they mean. A January match can be decisive because of results from September through December. A fixture guide should point readers toward standings as the league phase develops.",
           "Mistake four is treating all football competitions the same. Domestic league fixtures, domestic cups, and the Champions League follow different calendars and rules. This article is only about UEFA Champions League 2026-27 fixtures. It should not drift into generic football watching advice when the reader needs UEFA-specific schedule logic.",
@@ -1338,7 +1353,7 @@ export const articles: BlogArticle[] = [
       {
         heading: "Final Champions League fixture checklist",
         body: [
-          "On October 6, treat the league phase as active, not upcoming. September 8 belongs to completed context, October 13-14 is the next verified Matchday 2 window, and January 27 is the listed league-phase conclusion. Knockout ties remain TBD until the table and draw process produce them.",
+          "On October 9, treat the league phase as active, not upcoming. September 8 belongs to completed context, October 13-14 is the next verified Matchday 2 window, and January 27 is the listed league-phase conclusion. Knockout ties remain TBD until the table and draw process produce them.",
           "Use UEFA pages for team fixtures, matchday fixtures, standings, and results. If a kickoff matters, confirm the local time. If a tie matters, confirm it after the draw. If a later round matters, wait until qualification makes the participant real. That sequence keeps the article current and avoids invented football fixtures.",
           "For viewing, separate fixture knowledge from rights. UEFA confirms competition schedule information. Official broadcasters and providers confirm availability. Technical troubleshooting only applies after a reader has a legitimate way to watch and sees a playback symptom.",
           "If you follow one club, use UEFA's team fixture view and compare it with the club site for supporter details. If you follow the whole league phase, check standings after every matchday because the table explains why later fixtures matter.",
@@ -1351,9 +1366,9 @@ export const articles: BlogArticle[] = [
       },
     ],
     faqs: [
-      { question: "Has the Champions League 2026-27 league phase started?", answer: "Yes. UEFA states that the league phase kicked off on Tuesday, September 8, 2026. On October 6, that means opening fixtures are past context and the next useful planning window is Matchday 2. Use current UEFA listings for results, table movement, kickoff changes, and later draw information." },
-      { question: "When is Matchday 2?", answer: "UEFA lists Matchday 2 for Tuesday and Wednesday, October 13-14, 2026. From the October 6 audit perspective, that window is upcoming; after those dates pass, the article should be updated to treat it as current or completed. Verify exact kickoff times on UEFA because time-zone display, venue notes, and fixture status can change before matchday starts officially for clubs and supporters." },
-      { question: "Are knockout matchups known on October 6, 2026?", answer: "No. Knockout ties depend on league-phase results and draw procedures, so later matchups remain TBD until UEFA confirms them. League-phase fixtures can be listed by date and team, but knockout opponents should not be predicted in a fixture guide. Update those sections only after UEFA publishes the draw and tie details." },
+      { question: "Has the Champions League 2026-27 league phase started?", answer: "Yes. UEFA states that the league phase kicked off on Tuesday, September 8, 2026. On October 9, opening fixtures are past context and the next useful planning window is Matchday 2. Use current UEFA listings for results, table movement, kickoff changes, and later draw information." },
+      { question: "When is Matchday 2?", answer: "UEFA lists Matchday 2 for Tuesday and Wednesday, October 13-14, 2026. From the October 9 verification date, that window is upcoming; after those dates pass, the article should be updated to treat it as current or completed. Verify exact kickoff times on UEFA because time-zone display, venue notes, and fixture status can change." },
+      { question: "Are knockout matchups known on October 9, 2026?", answer: "No. Knockout ties depend on league-phase results and draw procedures, so later matchups remain TBD until UEFA confirms them. League-phase fixtures can be listed by date and team, but knockout opponents should not be predicted in a fixture guide. Update those sections only after UEFA publishes the draw and tie details." },
       { question: "Does Wizard TV have Champions League rights?", answer: "This site does not verify Champions League broadcast rights for Wizard TV. Check UEFA and official broadcaster information for availability. UEFA confirms fixtures and results; broadcasters and providers confirm where matches can legally be watched. A fixture being official does not prove any separate service carries it, so keep schedule facts and rights facts separate. If you are planning around a club match, verify both the UEFA fixture and the official broadcaster for your country. This avoids confusing schedule accuracy with viewing authorization, package terms, regional rules, blackout rules, platform rules, local terms, match access, live coverage, or access details locally first." },
     ],
     related: ["nba-2026-27-schedule-wizard-tv", "mlb-playoffs-2026-schedule-wizard-tv", "iptv-buffering-freezing-fixes-2026"],

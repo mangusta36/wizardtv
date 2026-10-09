@@ -11,10 +11,15 @@ const legal = [
   { label: "Disclaimer", href: "/disclaimer" },
 ];
 
+const company = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-[var(--line)] bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-6 md:grid-cols-[1.5fr_1fr_1fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:px-8">
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-6 text-[var(--muted)]">
@@ -30,6 +35,18 @@ export function Footer() {
           >
             Contact Support
           </ButtonLink>
+        </div>
+        <div>
+          <h2 className="text-sm font-semibold text-[var(--ink)]">Company</h2>
+          <ul className="mt-4 grid gap-3 text-sm">
+            {company.map((item) => (
+              <li key={item.href}>
+                <Link className="text-[var(--muted)] hover:text-[var(--accent)]" href={item.href}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
         <div>
           <h2 className="text-sm font-semibold text-[var(--ink)]">Navigation</h2>
@@ -57,7 +74,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-[var(--line)] px-5 py-5 text-center text-xs text-[var(--muted)]">
-        © 2026 Wizard TV. Production domain to be configured.
+        © 2026 Wizard TV. Plan information, setup guidance, and direct support.
       </div>
     </footer>
   );

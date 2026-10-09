@@ -104,6 +104,13 @@ export default function ChannelsPage() {
       <section className="bg-white py-16">
         <div className="container grid gap-10 lg:grid-cols-[.9fr_1.1fr]">
           <div>
+            <nav aria-label="Breadcrumb" className="mb-4 text-sm text-[var(--muted)]">
+              <ol className="flex items-center gap-2">
+                <li><Link href="/" className="font-semibold text-[var(--accent)]">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page">Devices and setup</li>
+              </ol>
+            </nav>
             <h1 className="text-4xl font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">
               Devices That Work With Wizard TV IPTV
             </h1>
@@ -111,6 +118,10 @@ export default function ChannelsPage() {
               Review common Wizard TV device paths before choosing a plan. Device setup
               can depend on your platform, region, available compatible player apps,
               and the account details provided after ordering.
+            </p>
+            <p className="mt-4 leading-7 text-[var(--muted)]">
+              This is the device compatibility and setup guide. It does not publish or
+              guarantee a list of channels, networks, or sports availability.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/pricing">View Pricing</ButtonLink>

@@ -56,7 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer support",
-              telephone: "+212753936672",
+              url: absoluteUrl("/contact"),
             },
           }}
         />

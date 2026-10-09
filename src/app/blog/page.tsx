@@ -32,8 +32,9 @@ export default function BlogPage() {
             Wizard TV blog
           </h1>
           <p className="mt-5 text-lg leading-8 text-[var(--muted)]">
-            Useful setup and buying guidance. The blog system is ready for deeper
-            articles without filling the site with thin content.
+            Practical troubleshooting and schedule-planning guides for devices,
+            playback, setup, and current sports calendars. Time-sensitive articles
+            link to official sources so you can confirm the latest details.
           </p>
         </div>
         {featured ? (

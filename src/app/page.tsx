@@ -367,6 +367,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white py-16">
+        <div className="container grid gap-8 md:grid-cols-[1fr_1fr] md:items-start">
+          <div>
+            <h2 className="text-3xl font-semibold text-[var(--ink)]">Know Who You Are Contacting</h2>
+            <p className="mt-4 leading-7 text-[var(--muted)]">
+              Learn what this website publishes, how Wizard TV support works, and which
+              business details are not claimed. The <Link href="/about" className="font-semibold text-[var(--accent)]">About Wizard TV page</Link> explains
+              the service-information and guidance available here.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-3xl font-semibold text-[var(--ink)]">Check Terms Before You Start</h2>
+            <p className="mt-4 leading-7 text-[var(--muted)]">
+              Review the <Link href="/privacy" className="font-semibold text-[var(--accent)]">Privacy Policy</Link>, <Link href="/terms" className="font-semibold text-[var(--accent)]">Website Terms</Link>, and <Link href="/refund" className="font-semibold text-[var(--accent)]">current refund information</Link> before
+              paying. For plan or setup questions, use the verified options on the <Link href="/contact" className="font-semibold text-[var(--accent)]">Contact page</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[var(--soft)] py-16">
         <div className="container flex flex-col justify-between gap-6 md:flex-row md:items-center">
           <div>

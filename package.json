@@ -7,10 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check:blog": "node scripts/check-blog-content.mjs",
     "check:pricing": "node scripts/verify-pricing.mjs",
     "check:brand": "node scripts/brand-leak-audit.mjs",
     "check:links": "node scripts/crawl-links.mjs",
-    "qa:domain": "node scripts/qa-domain.mjs"
+    "check:seo": "node scripts/check-rendered-seo.mjs",
+    "qa:domain": "node scripts/qa-domain.mjs",
+    "qa:browser": "node scripts/capture-screens.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

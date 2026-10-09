@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { articleJsonLd, articles, getArticle, headingId } from "@/data/blog";
+import { absoluteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -72,6 +73,17 @@ export default async function BlogArticlePage({ params }: Props) {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+            { "@type": "ListItem", position: 3, name: article.title, item: absoluteUrl(`/blog/${article.slug}`) },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: article.faqs.map((item) => ({
             "@type": "Question",
@@ -82,7 +94,15 @@ export default async function BlogArticlePage({ params }: Props) {
       />
       <div className="container">
         <div className="mx-auto max-w-3xl">
-          <Link href="/blog" className="text-sm font-semibold text-[var(--accent)]">Blog</Link>
+          <nav aria-label="Breadcrumb" className="text-sm text-[var(--muted)]">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li><Link href="/" className="font-semibold text-[var(--accent)]">Home</Link></li>
+              <li aria-hidden="true">/</li>
+              <li><Link href="/blog" className="font-semibold text-[var(--accent)]">Blog</Link></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="max-w-full truncate">{article.title}</li>
+            </ol>
+          </nav>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">
             {article.title}
           </h1>

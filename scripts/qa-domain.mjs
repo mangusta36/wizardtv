@@ -6,7 +6,7 @@ const OFFICIAL_ORIGIN = "https://www.wizardtv.vip";
 const CANONICAL_HOST = "www.wizardtv.vip";
 const SECONDARY_HOST = "wizardtv.vip";
 const root = process.cwd();
-const staticRoutes = ["/", "/pricing", "/channels", "/faq", "/blog", "/reseller", "/privacy", "/terms", "/refund", "/disclaimer"];
+const staticRoutes = ["/", "/pricing", "/channels", "/faq", "/blog", "/reseller", "/about", "/contact", "/privacy", "/terms", "/refund", "/disclaimer"];
 const failures = [];
 
 function fail(message) {
@@ -74,7 +74,11 @@ function checkSource() {
 
   const files = walk(root).filter((file) => {
     const rel = relative(root, file);
-    return /\.(ts|tsx|js|mjs|json)$/.test(file) && !rel.startsWith("scripts/capture-screens.") && !rel.startsWith("scripts/crawl-links.") && rel !== "scripts/qa-domain.mjs";
+    return /\.(ts|tsx|js|mjs|json)$/.test(file)
+      && !rel.startsWith("scripts/capture-screens.")
+      && !rel.startsWith("scripts/check-rendered-seo.")
+      && !rel.startsWith("scripts/crawl-links.")
+      && rel !== "scripts/qa-domain.mjs";
   });
   const stalePatterns = [
     /wizard-tv-domain-unset\.invalid/,
@@ -170,6 +174,30 @@ async function checkRendered(slugs) {
     }
   }
   pass(`${routes.length} rendered indexable routes checked`);
+
+  const { response: missingResponse, text: missingText } = await fetchText(base, "/qa-confirmed-missing-page");
+  if (missingResponse.status !== 404) fail(`missing route expected 404, got ${missingResponse.status}`);
+  else pass("missing route returns 404");
+  if (!/Page not found/i.test(missingText)) fail("missing route does not render the branded 404");
+  else pass("branded 404 renders");
+
+  const { response: headerResponse } = await fetchText(base, "/");
+  const expectedHeaders = {
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY",
+    "referrer-policy": "strict-origin-when-cross-origin",
+  };
+  for (const [name, expected] of Object.entries(expectedHeaders)) {
+    const actual = headerResponse.headers.get(name);
+    if (actual !== expected) fail(`${name} expected ${expected}, got ${actual || "missing"}`);
+    else pass(`${name} is configured`);
+  }
+  const permissions = headerResponse.headers.get("permissions-policy") || "";
+  if (!permissions.includes("camera=()") || !permissions.includes("microphone=()") || !permissions.includes("geolocation=()")) {
+    fail("permissions-policy is missing required restrictions");
+  } else {
+    pass("permissions-policy is configured");
+  }
 
   const redirect = await requestWithHost(base, "/pricing?trial=1", SECONDARY_HOST);
   const location = redirect.headers.location;
