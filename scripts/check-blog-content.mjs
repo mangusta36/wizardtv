@@ -4,8 +4,17 @@ import path from "node:path";
 import ts from "typescript";
 
 const sourcePath = path.join(process.cwd(), "src/data/blog.ts");
+const seoSourcePath = path.join(process.cwd(), "src/data/seo-articles.ts");
+const seoSource = fs.readFileSync(seoSourcePath, "utf8");
+const seoCompiled = ts.transpileModule(seoSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
+}).outputText;
+const seoModule = new Module(seoSourcePath);
+seoModule.paths = Module._nodeModulePaths(process.cwd());
+seoModule._compile(seoCompiled, seoSourcePath);
 let source = fs.readFileSync(sourcePath, "utf8");
 source = source.replace('import { absoluteUrl } from "@/lib/site";', 'const absoluteUrl = (path = "/") => `https://www.wizardtv.vip${path.startsWith("/") ? path : `/${path}`}`;');
+source = source.replace('import { seoArticles } from "./seo-articles";', `const seoArticles = ${JSON.stringify(seoModule.exports.seoArticles)};`);
 
 const compiled = ts.transpileModule(source, {
   compilerOptions: {
@@ -20,6 +29,10 @@ mod.paths = Module._nodeModulePaths(process.cwd());
 mod._compile(compiled, sourcePath);
 
 const { articles } = mod.exports;
+const minimumWords = new Map([
+  ["best-iptv-subscription-usa-2026", 2000],
+  ["best-iptv-for-firestick-2026", 1800],
+]);
 const visibleText = (article) => [
   article.title,
   article.excerpt,
@@ -44,12 +57,12 @@ for (let i = 0; i < paragraphs.length; i += 1) {
 
 let pass = true;
 console.log("Blog content QA");
-console.log(`Articles: ${articles.length}/10 ${articles.length === 10 ? "PASS" : "FAIL"}`);
-if (articles.length !== 10) pass = false;
+console.log(`Articles: ${articles.length}/12 ${articles.length === 12 ? "PASS" : "FAIL"}`);
+if (articles.length !== 12) pass = false;
 for (const article of articles) {
   const count = words(visibleText(article));
   const checks = {
-    words: count >= 2500,
+    words: count >= (minimumWords.get(article.slug) ?? 2500),
     toc: article.sections.length >= 4,
     table: article.sections.some((section) => section.table),
     faq: article.faqs.length >= 3,

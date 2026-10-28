@@ -1,6 +1,7 @@
 import { absoluteUrl } from "@/lib/site";
+import { seoArticles } from "./seo-articles";
 
-export type BlogImage = { src: string; alt: string; width: number; height: number };
+export type BlogImage = { src: string; alt: string; width: number; height: number; caption?: string };
 export type BlogTable = { columns: string[]; rows: string[][] };
 export type BlogSection = { heading: string; body: string[]; table?: BlogTable; image?: BlogImage };
 export type BlogArticle = {
@@ -18,6 +19,7 @@ export type BlogArticle = {
   heroImage: string;
   heroAlt: string;
   supportImages: BlogImage[];
+  faqImage?: BlogImage;
   metaDescription: string;
   sections: BlogSection[];
   faqs: { question: string; answer: string }[];
@@ -73,6 +75,7 @@ function article(input: Omit<BlogArticle, "publishedAt" | "updatedAt">): BlogArt
 }
 
 export const articles: BlogArticle[] = [
+  ...seoArticles,
   article({
     slug: "iptv-buffering-freezing-fixes-2026",
     title: "IPTV Keeps Buffering or Freezing? 15 Ways to Fix It in 2026",
@@ -195,7 +198,7 @@ export const articles: BlogArticle[] = [
       { question: "Should I use Ethernet for IPTV?", answer: "Ethernet is the best test and often the best fix. If wired playback is stable while Wi-Fi buffers, focus on router placement, wireless interference, or a permanent wired connection." },
       { question: "When should I contact support?", answer: "Contact support after testing another channel, another device, and ideally Ethernet or another network. Include the affected items, device, player, connection type, and exact symptom." },
     ],
-    related: ["why-iptv-keeps-freezing-causes-fixes", "wizard-tv-not-working-black-screen", "wizard-tv-no-sound-audio-sync"],
+    related: ["best-iptv-for-firestick-2026", "best-iptv-subscription-usa-2026", "why-iptv-keeps-freezing-causes-fixes", "wizard-tv-not-working-black-screen", "wizard-tv-no-sound-audio-sync"],
     sources: techSources,
   }),
   article({
@@ -320,7 +323,7 @@ export const articles: BlogArticle[] = [
       { question: "Should I reinstall the app immediately?", answer: "No. Restart the app and device first, then clear cache if safe. Reinstall only when you can re-enter credentials and simpler fixes have failed. Reinstalling too early can erase a useful working state and create a new login problem." },
       { question: "What details should I send to support?", answer: "Send the device, player, exact error, whether the list loads, affected channels, connection type, and tests already tried. Do not post real credentials publicly. Add whether the problem is one channel, one category, or everything, because that scope changes the likely cause." },
     ],
-    related: ["xtream-codes-not-working-login-server-url", "iptv-buffering-freezing-fixes-2026", "wizard-tv-no-sound-audio-sync"],
+    related: ["best-iptv-for-firestick-2026", "best-iptv-subscription-usa-2026", "xtream-codes-not-working-login-server-url", "iptv-buffering-freezing-fixes-2026", "wizard-tv-no-sound-audio-sync"],
     sources: techSources,
   }),
   article({
@@ -445,7 +448,7 @@ export const articles: BlogArticle[] = [
       { question: "Can DNS fix an Xtream Codes error?", answer: "DNS can help only if the device cannot reach or resolve the server. It will not fix expired access, wrong credentials, or player field mapping. Test DNS only after confirming the URL format and after comparing whether the same details behave differently on another network." },
       { question: "Why does one IPTV app accept my login but another does not?", answer: "The failing app may use different field labels, may not support the same format, or may require the server and port to be entered differently. Keep the working app untouched while comparing the failing app so you do not lose your baseline." },
     ],
-    related: ["wizard-tv-not-working-black-screen", "iptv-epg-not-working-guide-time", "iptv-buffering-freezing-fixes-2026"],
+    related: ["best-iptv-for-firestick-2026", "wizard-tv-not-working-black-screen", "iptv-epg-not-working-guide-time", "iptv-buffering-freezing-fixes-2026"],
     sources: techSources,
   }),
   article({

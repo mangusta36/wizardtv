@@ -14,12 +14,12 @@ function RichText({ text }: { text: string }) {
 
   return (
     <>
-      {parts.map((part) => {
+      {parts.map((part, partIndex) => {
         const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
         if (!match) return part;
         const [, label, href] = match;
         return (
-          <Link key={`${label}-${href}`} href={href} className="font-semibold text-[var(--accent)]">
+          <Link key={partIndex} href={href} className="font-semibold text-[var(--accent)]">
             {label}
           </Link>
         );
@@ -118,8 +118,8 @@ export default async function BlogArticlePage({ params }: Props) {
           <nav className="border-y border-[var(--line)] py-6" aria-label="Table of contents">
             <h2 className="text-xl font-semibold text-[var(--ink)]">In this guide</h2>
             <ol className="mt-4 grid gap-2 text-sm leading-6">
-              {toc.map((item) => (
-                <li key={item.id}>
+              {toc.map((item, itemIndex) => (
+                <li key={itemIndex}>
                   <Link href={`#${item.id}`} className="font-semibold text-[var(--accent)]">
                     {item.label}
                   </Link>
@@ -127,13 +127,14 @@ export default async function BlogArticlePage({ params }: Props) {
               ))}
             </ol>
           </nav>
-          {article.sections.map((section) => (
-            <section key={section.heading} className="mt-10">
+          {article.sections.map((section, sectionIndex) => (
+            <section key={sectionIndex} className="mt-10">
               <h2 id={headingId(section.heading)} className="scroll-mt-24 text-2xl font-semibold text-[var(--ink)]">
                 {section.heading}
               </h2>
               {section.image ? (
-                <div className="relative mt-5 aspect-[16/9] overflow-hidden rounded-lg">
+                <figure className="mt-5">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
                   <Image
                     src={section.image.src}
                     alt={section.image.alt}
@@ -142,9 +143,11 @@ export default async function BlogArticlePage({ params }: Props) {
                     className="object-cover"
                   />
                 </div>
+                {section.image.caption ? <figcaption className="mt-2 text-sm leading-6 text-[var(--muted)]">{section.image.caption}</figcaption> : null}
+                </figure>
               ) : null}
-              {section.body.map((paragraph) => (
-                <p key={paragraph} className="mt-4 leading-8 text-[var(--muted)]">
+              {section.body.map((paragraph, paragraphIndex) => (
+                <p key={paragraphIndex} className="mt-4 leading-8 text-[var(--muted)]">
                   <RichText text={paragraph} />
                 </p>
               ))}
@@ -153,18 +156,18 @@ export default async function BlogArticlePage({ params }: Props) {
                   <table className="min-w-[42rem] w-full border-collapse text-left text-sm">
                     <thead className="bg-[var(--soft)] text-[var(--ink)]">
                       <tr>
-                        {section.table.columns.map((column) => (
-                          <th key={column} scope="col" className="border-b border-[var(--line)] px-4 py-3 font-semibold">
+                        {section.table.columns.map((column, columnIndex) => (
+                          <th key={columnIndex} scope="col" className="border-b border-[var(--line)] px-4 py-3 font-semibold">
                             {column}
                           </th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="text-[var(--muted)]">
-                      {section.table.rows.map((row) => (
-                        <tr key={row.join("-")} className="border-b border-[var(--line)] last:border-b-0">
-                          {row.map((cell) => (
-                            <td key={cell} className="px-4 py-3 align-top leading-6">
+                      {section.table.rows.map((row, rowIndex) => (
+                        <tr key={rowIndex} className="border-b border-[var(--line)] last:border-b-0">
+                          {row.map((cell, cellIndex) => (
+                            <td key={cellIndex} className="px-4 py-3 align-top leading-6">
                               {cell}
                             </td>
                           ))}
@@ -180,8 +183,8 @@ export default async function BlogArticlePage({ params }: Props) {
             <section className="mt-12 border-t border-[var(--line)] pt-8">
               <h2 className="text-2xl font-semibold text-[var(--ink)]">Sources checked</h2>
               <ul className="mt-4 grid gap-3 leading-7">
-                {article.sources.map((source) => (
-                  <li key={source.href}>
+                {article.sources.map((source, sourceIndex) => (
+                  <li key={sourceIndex}>
                     <a href={source.href} className="font-semibold text-[var(--accent)]" target="_blank" rel="noopener noreferrer">
                       {source.label}
                     </a>
@@ -192,6 +195,14 @@ export default async function BlogArticlePage({ params }: Props) {
           ) : null}
           <section className="mt-12">
             <h2 className="text-2xl font-semibold text-[var(--ink)]">Quick answers</h2>
+            {article.faqImage ? (
+              <figure className="mt-5">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
+                  <Image src={article.faqImage.src} alt={article.faqImage.alt} fill sizes="(min-width: 768px) 768px, 100vw" className="object-cover" />
+                </div>
+                {article.faqImage.caption ? <figcaption className="mt-2 text-sm leading-6 text-[var(--muted)]">{article.faqImage.caption}</figcaption> : null}
+              </figure>
+            ) : null}
             <div className="mt-4">
               <FaqAccordion items={article.faqs} />
             </div>

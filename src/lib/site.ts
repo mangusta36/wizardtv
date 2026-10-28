@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Wizard TV",
+  alternateNames: ["WizardTV", "Wizard IPTV", "WizardIPTV"],
   brandKeyword: "wizard tv",
   description:
     "Wizard TV is a simple IPTV subscription service with clear pricing, multi-device options, free trial requests, and direct WhatsApp support.",

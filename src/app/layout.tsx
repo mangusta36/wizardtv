@@ -51,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Wizard TV",
+            alternateName: siteConfig.alternateNames,
             "@id": absoluteUrl("/#organization"),
             url: absoluteUrl("/"),
             contactPoint: {

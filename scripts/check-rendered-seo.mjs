@@ -24,7 +24,7 @@ const sitemapResponse = await fetch(`${base}/sitemap.xml`);
 if (!sitemapResponse.ok) throw new Error(`/sitemap.xml returned ${sitemapResponse.status}`);
 const sitemap = await sitemapResponse.text();
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => decodeHtml(match[1]));
-if (urls.length !== 22) fail(`expected 22 sitemap URLs, found ${urls.length}`);
+if (urls.length !== 24) fail(`expected 24 sitemap URLs, found ${urls.length}`);
 if (new Set(urls).size !== urls.length) fail("sitemap has duplicate URLs");
 
 const titles = new Map();

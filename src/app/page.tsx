@@ -5,24 +5,24 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { JsonLd } from "@/components/JsonLd";
 import { PricingSelector } from "@/components/PricingSelector";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import { createWhatsAppUrl, whatsappMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
-  title: "Wizard TV IPTV Plans, Device Setup and Free Trial",
+  title: "Wizard TV | IPTV Subscription Plans & Streaming",
   description:
-    "Learn how Wizard TV IPTV works, compare Wizard IPTV plans for 1 to 5 devices, request a Free Trial, and contact support on WhatsApp.",
+    "Explore Wizard TV IPTV subscription options, supported devices, setup guidance, and streaming features. Compare plans and get started.",
   alternates: { canonical: absoluteUrl("/") },
   openGraph: {
-    title: "Wizard TV IPTV Plans, Devices and Free Trial",
+    title: "Wizard TV | IPTV Subscription Plans & Streaming",
     description:
-      "Compare Wizard TV IPTV plans, review supported devices, request a Free Trial, and get direct WhatsApp support.",
+      "Explore Wizard TV IPTV subscription options, supported devices, setup guidance, and streaming features. Compare plans and get started.",
     url: absoluteUrl("/"),
   },
   twitter: {
-    title: "Wizard TV IPTV Plans, Devices and Free Trial",
+    title: "Wizard TV | IPTV Subscription Plans & Streaming",
     description:
-      "Compare Wizard TV IPTV plans, review supported devices, request a Free Trial, and get direct WhatsApp support.",
+      "Explore Wizard TV IPTV subscription options, supported devices, setup guidance, and streaming features. Compare plans and get started.",
   },
 };
 
@@ -100,6 +100,7 @@ export default function Home() {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "Wizard TV",
+          alternateName: siteConfig.alternateNames,
           url: absoluteUrl("/"),
           description: "Wizard TV IPTV pricing, devices, Free Trial requests, and support.",
         }}
@@ -128,10 +129,10 @@ export default function Home() {
         <div className="container relative flex min-h-[620px] items-center py-20">
           <div className="w-full max-w-2xl text-white">
             <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              Wizard TV IPTV Plans for Simple TV Viewing Across Your Devices
+              Wizard TV: IPTV Subscription Plans for Your Devices
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/86">
-              Wizard TV IPTV helps you compare plans by duration and device count,
+              Wizard TV is an IPTV subscription service that helps you compare plans by duration and device count,
               request a Free Trial on WhatsApp, and get direct support for common
               streaming devices.
             </p>

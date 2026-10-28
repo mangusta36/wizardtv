@@ -51,6 +51,11 @@ const faqGroups: FaqGroup[] = [
           "Wizard IPTV is used on this website as a shorter way to refer to the same Wizard TV service context. It is not presented as a separate company or a separate brand.",
       },
       {
+        question: "Do WizardTV and WizardIPTV refer to Wizard TV?",
+        answer:
+          "Yes. WizardTV and WizardIPTV are compact naming variations for the same Wizard TV service context; they do not describe separate companies, products, or websites.",
+      },
+      {
         question: "How do I get started with Wizard TV?",
         answer:
           "Start by checking the device you want to use, choosing a device count, and comparing plan durations. You can then use the pricing page to order through WhatsApp or request a Free Trial first.",
